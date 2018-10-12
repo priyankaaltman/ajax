@@ -6,9 +6,8 @@
 function showFortune(evt) {
 
     $.get('/fortune', (results) => {
-    	const fortune = results;
 
-    	$('#fortune-text').html(fortune);
+    	$('#fortune-text').html(results);
 	});
 }
 
@@ -29,7 +28,10 @@ function showWeather(evt) {
     let formData = {"zipcode": $("#zipcode-field").val()};
 
 
-    // TODO: request weather with that URL and show the forecast in #weather-info
+    $.get(url, formData, (results) => {
+    	$('#weather-info').html(results.forecast);
+    	console.log(results);
+    });// TODO: request weather with that URL and show the forecast in #weather-info
 }
 
 $("#weather-form").on('submit', showWeather);
